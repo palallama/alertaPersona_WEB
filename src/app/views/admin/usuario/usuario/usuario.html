@@ -1,0 +1,314 @@
+<!-- View Mode -->
+@if (isViewMode) {
+<div class="user-profile">
+  <div class="profile-section">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="profile-item">
+          <label class="profile-label">Nombre</label>
+          <p class="profile-value">{{ userForm.nombre }}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="profile-item">
+          <label class="profile-label">Apellido</label>
+          <p class="profile-value">{{ userForm.apellido }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-item">
+      <label class="profile-label">Email</label>
+      <p class="profile-value">{{ userForm.mail }}</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="profile-item">
+          <label class="profile-label">Teléfono</label>
+          <p class="profile-value">{{ userForm.telefono || '—' }}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="profile-item">
+          <label class="profile-label">Género</label>
+          <p class="profile-value">{{ userForm.genero ? getGeneroLabel(userForm.genero) : '—' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="profile-item">
+          <label class="profile-label">Fecha de Nacimiento</label>
+          <p class="profile-value">{{ userForm.fchNacimiento ? (userForm.fchNacimiento | date:'dd/MM/yyyy') : '—' }}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="profile-item">
+          <label class="profile-label">Estado</label>
+          <p-tag 
+            [value]="userForm.activo ? 'Activo' : 'Inactivo'"
+            [severity]="userForm.activo ? 'success' : 'secondary'">
+          </p-tag>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="profile-item">
+          <label class="profile-label">Nro. Documento</label>
+          <p class="profile-value">{{ userForm.nroDocumento }}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="profile-item">
+          <label class="profile-label">Nro. Trámite</label>
+          <p class="profile-value">{{ userForm.nroTramite }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+<!-- Edit/Create Form -->
+@if (!isViewMode) {
+<form (ngSubmit)="onSubmit()" #userFormElement="ngForm">
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="userName" class="form-label fw-semibold">Nombre *</label>
+      <input 
+        pInputText
+        id="userName"
+        type="text" 
+        class="w-100" 
+        [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('nombre')}"
+        [(ngModel)]="userForm.nombre" 
+        name="nombre" 
+        placeholder="Ingrese el nombre"
+        required>
+      @if (isFieldInvalid('nombre')) {
+      <small class="text-danger">
+        El nombre es requerido
+      </small>
+      }
+    </div>
+    
+    <div class="col-md-6 mb-3">
+      <label for="userApellido" class="form-label fw-semibold">Apellido *</label>
+      <input 
+        pInputText
+        id="userApellido"
+        type="text" 
+        class="w-100"
+        [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('apellido')}"
+        [(ngModel)]="userForm.apellido" 
+        name="apellido" 
+        placeholder="Ingrese el apellido"
+        required>
+      @if (isFieldInvalid('apellido')) {
+      <small class="text-danger">
+        El apellido es requerido
+      </small>
+      }
+    </div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="userEmail" class="form-label fw-semibold">Email *</label>
+    <input 
+      pInputText
+      id="userEmail"
+      type="email" 
+      class="w-100"
+      [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('mail')}"
+      [(ngModel)]="userForm.mail" 
+      name="mail" 
+      placeholder="correo@ejemplo.com"
+      required>
+    @if (isFieldInvalid('mail')) {
+    <small class="text-danger">
+      El email es requerido
+    </small>
+    }
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="userPhone" class="form-label fw-semibold">Teléfono</label>
+      <p-inputmask
+        mask="9999-999999"
+        [(ngModel)]="userForm.telefono"
+        placeholder="2944-345678"
+        styleClass="w-100"
+        name="telefono">
+      </p-inputmask>
+      <small class="text-light d-block mt-1">
+        Formato: XXXX-XXXXXX
+      </small>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label for="userGenero" class="form-label fw-semibold">Género *</label>
+      <p-select
+        [options]="generos"
+        [(ngModel)]="userForm.genero"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Seleccione un género"
+        [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('genero')}"
+        styleClass="w-100"
+        name="genero">
+      </p-select>
+      <small class="text-light d-block mt-1">
+        Seleccione la identidad de género con la que se identifica
+      </small>
+      @if (isFieldInvalid('genero')) {
+      <small class="text-danger">
+        El género es requerido
+      </small>
+      }
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="userFechaNacimiento" class="form-label fw-semibold">Fecha de Nacimiento *</label>
+      <p-datepicker
+        [(ngModel)]="userForm.fchNacimiento"
+        [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('fchNacimiento')}"
+        dateFormat="dd/mm/yy"
+        placeholder="dd/mm/aaaa"
+        [showIcon]="true"
+        [maxDate]="maxDate"
+        styleClass="w-100"
+        name="fchNacimiento">
+      </p-datepicker>
+      @if (isFieldInvalid('fchNacimiento')) {
+      <small class="text-danger">
+        La fecha de nacimiento es requerida
+      </small>
+      }
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="userDocumento" class="form-label fw-semibold">Nro. Documento *</label>
+      <p-inputmask
+        mask="99.999.999"
+        [(ngModel)]="userForm.nroDocumento"
+        [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('nroDocumento')}"
+        placeholder="12.345.678"
+        styleClass="w-100"
+        name="nroDocumento">
+      </p-inputmask>
+      <small class="text-light d-block mt-1">
+        Debe tener exactamente 8 dígitos
+      </small>
+      @if (isFieldInvalid('nroDocumento')) {
+      <small class="text-danger">
+        El número de documento es requerido (8 dígitos)
+      </small>
+      }
+    </div>
+    
+    <div class="col-md-6 mb-3">
+      <label for="userTramite" class="form-label fw-semibold">Nro. Trámite *</label>
+      <input 
+        pInputText
+        id="userTramite"
+        type="text" 
+        class="w-100"
+        [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('nroTramite')}"
+        [(ngModel)]="userForm.nroTramite" 
+        name="nroTramite" 
+        placeholder="00000000000"
+        maxlength="11"
+        pattern="[0-9]*"
+        required>
+      <small class="text-light d-block mt-1">
+        Máximo 11 dígitos numéricos
+      </small>
+      @if (isFieldInvalid('nroTramite')) {
+      <small class="text-danger">
+        El número de trámite es requerido
+      </small>
+      }
+    </div>
+  </div>
+  
+  @if (isCreateMode) {
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="userPassword" class="form-label fw-semibold">Contraseña *</label>
+      <p-password
+        [(ngModel)]="userForm.password"
+        [ngClass]="{'ng-invalid ng-dirty': isPasswordInvalid()}"
+        [toggleMask]="true"
+        [feedback]="true"
+        placeholder="Ingrese la contraseña"
+        styleClass="w-100"
+        inputStyleClass="w-100"
+        name="password"
+        weakLabel="Débil"
+        mediumLabel="Media"
+        strongLabel="Fuerte">
+      </p-password>
+      @if (isPasswordInvalid()) {
+      <small class="text-danger">
+        La contraseña es requerida
+      </small>
+      }
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label for="confirmPassword" class="form-label fw-semibold">Repetir Contraseña *</label>
+      <p-password
+        [(ngModel)]="confirmPassword"
+        [ngClass]="{'ng-invalid ng-dirty': isConfirmPasswordInvalid()}"
+        [toggleMask]="true"
+        [feedback]="false"
+        placeholder="Repita la contraseña"
+        styleClass="w-100"
+        inputStyleClass="w-100"
+        name="confirmPassword">
+      </p-password>
+      @if (isConfirmPasswordInvalid()) {
+      <small class="text-danger">
+        Las contraseñas no coinciden
+      </small>
+      }
+      @if (submitted && !isConfirmPasswordInvalid() && confirmPassword) {
+      <small class="text-success">
+        ✓ Las contraseñas coinciden
+      </small>
+      }
+    </div>
+  </div>
+  }
+  
+  <div class="d-flex justify-content-end gap-2 mt-4">
+    <p-button 
+      label="Cancelar" 
+      type="button"
+      severity="secondary"
+      [outlined]="true"
+      [disabled]="loading"
+      (onClick)="onCancel()">
+    </p-button>
+    
+    <p-button 
+      [label]="isCreateMode ? 'Crear Usuario' : 'Guardar Cambios'" 
+      type="submit"
+      [loading]="loading"
+      severity="success">
+    </p-button>
+  </div>
+</form>
+}
+
+<!-- Toast for validation errors -->
+<p-toast position="top-center"></p-toast>

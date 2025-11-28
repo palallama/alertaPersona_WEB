@@ -1,0 +1,182 @@
+<div class="page-container">
+    <app-navbar></app-navbar>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container my-5">
+            <!-- Header Section -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+                <h2 class="fw-bold text-primary mb-0">Gestión de Usuarios</h2>
+
+                <div class="d-flex gap-2 align-items-center">
+                    <!-- <span class="p-input-icon-left">
+                        <ng-icon name="lucideSearch" class="search-icon"></ng-icon>
+                        <input pInputText type="text" [(ngModel)]="searchTerm" (input)="onSearch()"
+                            class="search-bar ps-5" placeholder="Buscar por nombre o email...">
+                    </span> -->
+                    <p-button
+                        label="Nuevo Usuario"
+                        (onClick)="openAddModal()"
+                        severity="success"
+                    >
+                        <ng-template pTemplate="icon">
+                            <ng-icon name="lucidePlus" class="me-2"></ng-icon>
+                        </ng-template>
+                    </p-button>
+                </div>
+            </div>
+
+            <!-- Table Card -->
+            <div class="card p-4">
+                <p-table
+                    #dt
+                    [value]="filteredUsers"
+                    [rows]="10"
+                    [paginator]="true"
+                    [loading]="loading"
+                    [globalFilterFields]="['id', 'nombre', 'apellido', 'mail', 'telefono']"
+                    [tableStyle]="{ 'min-width': '75rem' }"
+                    [rowHover]="true"
+                    dataKey="id"
+                    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+                    [showCurrentPageReport]="true"
+                    [rowsPerPageOptions]="[10, 25, 50]"
+                >
+                    <ng-template pTemplate="caption">
+                        <div class="flex align-items-center justify-content-between" style="display: flex;">
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText style="padding-top: 0.4rem !important;padding-bottom: 0.4rem !important;margin-left: 10px;" class="p-component p-element p-inputtext"  type="text" (input)="dt.filterGlobal(getEventValue($event), 'contains')" placeholder="Buscar..." />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="id">
+                                ID <p-sortIcon field="id"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="nombre">
+                                Nombre <p-sortIcon field="nombre"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="mail">
+                                Email <p-sortIcon field="mail"></p-sortIcon>
+                            </th>
+                            <th>Teléfono</th>
+                            <th>Rol</th>
+                            <th pSortableColumn="activo">
+                                Estado <p-sortIcon field="activo"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="activo">
+                                Validado <p-sortIcon field="activo"></p-sortIcon>
+                            </th>
+                            <th style="width: 150px">Acciones</th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-user>
+                        <tr>
+                            <td>
+                                <span class="small">{{ user.id | idAP }}</span>
+                            </td>
+                            <td>
+                                <strong>{{ user.nombre }} {{ user.apellido }}</strong>
+                            </td>
+                            <td>
+                                <span class="">{{ user.mail }}</span>
+                            </td>
+                            <td>{{ user.telefono || '—' }}</td>
+                            <td>
+                                <p-tag value="Usuario" severity="info" [rounded]="true"></p-tag>
+                            </td>
+                            <td>
+                                <p-tag [value]="user.activo ? 'Activo' : 'Inactivo'"
+                                    [severity]="user.activo ? 'success' : 'secondary'" [rounded]="true">
+                                </p-tag>
+                            </td>
+                            <td>
+                                <p-tag [value]="user.validado ? 'Validado' : 'No Validado'"
+                                    [severity]="user.validado ? 'success' : 'secondary'" [rounded]="true">
+                                </p-tag>
+                            </td>
+                            <td>
+                                <div class="d-flex gap-1 justify-content-center">
+                                    <p-button
+                                        [severity]="user.activo ? 'secondary' : 'success'"
+                                        [rounded]="true"
+                                        [text]="true"
+                                        (onClick)="toggleState(user)"
+                                        [pTooltip]="user.activo ? 'Desactivar' : 'Activar'"
+                                        tooltipPosition="top"
+                                    >
+                                        <ng-icon [name]="user.activo ? 'lucideBadgeAlert' : 'lucideBadgeCheck'" style="font-size: 1.2rem;"></ng-icon>
+                                    </p-button>
+                                    <p-button
+                                        [severity]="user.validado ? 'secondary' : 'success'"
+                                        [rounded]="true"
+                                        [text]="true"
+                                        (onClick)="toggleValid(user)"
+                                        [pTooltip]="user.validado ? 'Invalidar' : 'Validar'"
+                                        tooltipPosition="top"
+                                    >
+                                        <ng-icon [name]="user.validado ? 'lucideUserX' : 'lucideUserCheck'" style="font-size: 1.2rem;"></ng-icon>
+                                    </p-button>
+                                    <p-button
+                                        severity="info"
+                                        [rounded]="true"
+                                        [text]="true"
+                                        (onClick)="viewProfile(user)"
+                                        pTooltip="Ver perfil"
+                                        tooltipPosition="top"
+                                    >
+                                        <ng-icon name="lucideEye" style="font-size: 1.2rem;"></ng-icon>
+                                    </p-button>
+                                    <p-button
+                                        severity="primary"
+                                        [rounded]="true"
+                                        [text]="true"
+                                        (onClick)="openEditModal(user)"
+                                        pTooltip="Editar"
+                                        tooltipPosition="top"
+                                    >
+                                        <ng-icon name="lucideEdit" style="font-size: 1.2rem;"></ng-icon>
+                                    </p-button>
+                                    <p-button
+                                        severity="danger"
+                                        [rounded]="true"
+                                        [text]="true"
+                                        (onClick)="deleteUser(user.id!)"
+                                        pTooltip="Eliminar"
+                                        tooltipPosition="top"
+                                    >
+                                        <ng-icon name="lucideTrash" style="font-size: 1.2rem;"></ng-icon>
+                                    </p-button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="7" class="text-center py-5">
+                                <div class="d-flex flex-column align-items-center gap-2">
+                                    <i class="pi pi-users"
+                                        style="font-size: 3rem; color: var(--text-color-secondary);"></i>
+                                    <p class="text-muted mb-0">No se encontraron usuarios</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+</div>
+
+<!-- Confirmation Dialog -->
+<p-confirmDialog></p-confirmDialog>
+
+<!-- Toast Notifications -->
+<p-toast position="bottom-right"></p-toast>

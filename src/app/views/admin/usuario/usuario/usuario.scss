@@ -1,0 +1,111 @@
+
+.usuario-container {
+  background-color: var(--admin-bg-dark);
+  color: var(--admin-text-primary);
+  min-height: 100vh;
+  
+  .card {
+    background-color: var(--admin-bg-card);
+    border: 1px solid var(--admin-border);
+    color: var(--admin-text-primary);
+    box-shadow: var(--shadow-md1);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--admin-text-primary);
+  }
+  
+  label {
+    color: var(--admin-text-primary);
+  }
+  
+  .form-control {
+    background-color: var(--admin-bg-input);
+    color: var(--admin-text-primary);
+    border-color: var(--admin-border);
+    
+    &:focus {
+      background-color: var(--admin-bg-input);
+      color: var(--admin-text-primary);
+      border-color: var(--primary-color);
+    }
+  }
+}
+
+.user-profile {
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .profile-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .profile-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  .profile-value {
+    font-size: 1rem;
+    // color: #111827;
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+}
+
+// Form validation styles
+.ng-invalid.ng-dirty {
+  border-color: #ef4444 !important;
+}
+
+.text-danger {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.text-success {
+  color: #10b981;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.text-muted {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.text-light {
+  color: #f3f4f6;
+  font-size: 0.875rem;
+}
+
+// Override PrimeNG styles for consistency
+::ng-deep {
+  .p-select.ng-invalid.ng-dirty,
+  .p-datepicker.ng-invalid.ng-dirty,
+  .p-password.ng-invalid.ng-dirty {
+    .p-select-label,
+    .p-datepicker-input,
+    .p-password-input {
+      border-color: #ef4444 !important;
+    }
+  }
+  
+  .p-password {
+    width: 100%;
+    
+    .p-password-input {
+      width: 100%;
+    }
+  }
+}

@@ -1,1 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use "tailwindcss";
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/bootstrap";
+
+// @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+:root {
+  --background: #0f1724;
+  --foreground: #e6eef6;
+  --border: #2b3440;
+  --input: #111827;
+  --primary: #0b74d1;
+  --primary-foreground: #ffffff;
+  --secondary: #1f6f8b;
+  --secondary-foreground: #ffffff;
+  --muted: #24303a;
+  --muted-foreground: #9fb3c8;
+  --success: #16a34a;
+  --success-foreground: #ffffff;
+  --accent: #f59e0b;
+  --accent-foreground: #0b1720;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --warning: #fbbf24;
+  --warning-foreground: #0b1720;
+  --card: #0e1620;
+  --card-foreground: #e6eef6;
+  --sidebar: #0b1220;
+  --sidebar-foreground: #cfe8ff;
+  --sidebar-primary: #0b74d1;
+  --sidebar-primary-foreground: #ffffff;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+  color: var(--foreground);
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  border-bottom: 1px solid var(--border);
+}
+
+header {
+  backdrop-filter: blur(8px);
+  background-color: rgba(11, 116, 209, 0.85);
+}

@@ -1,0 +1,180 @@
+
+* {
+  scroll-behavior: smooth;
+}
+
+section {
+  padding: 200px 0;
+  border: 0px;
+}
+
+.graficos {
+  max-height: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menuOption {
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+// Animaciones personalizadas
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Clases de animación
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 1s ease forwards;
+}
+
+// Video responsivo con sombra mejorada
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+// Animación para títulos hero
+h1 {
+  animation: fadeInDown 1s ease forwards;
+  text-shadow: 0 4px 20px rgba(11, 116, 209, 0.3);
+}
+
+// Mejoras para formulario
+form {
+  input, 
+  textarea {
+    &:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(11, 116, 209, 0.1);
+    }
+  }
+}
+
+// Cards con hover effect
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Smooth scroll behavior
+html {
+  scroll-behavior: smooth;
+}
+
+// Fix para z-index del header
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+}
+
+// Mejoras para imágenes de equipo
+img {
+  &[alt*="Desarrollador"] {
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+// Estilos para canvas de gráficos
+canvas {
+  max-width: 100%;
+  height: auto !important;
+}
+
+// Ajustes responsive adicionales
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem !important;
+  }
+
+  footer {
+    font-size: 0.9rem;
+    padding-top: 3rem;
+    padding-bottom: 1.5rem;
+  }
+}

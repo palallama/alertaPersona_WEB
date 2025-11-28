@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>ALERTA PERSONA WEB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- <link href="https://fonts.googleapis.com/css2?family=..." rel="stylesheet" /> -->
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        /* Tu CSS aquí */
+    </style>
+</head>
+<body>
+
+
+
+<div style="width: 100%; position: absolute; left: 50%; transform: translateX(-50%)">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Shantell+Sans:wght@300..800&display=swap&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Geist:wght@100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Michroma&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap"
+    rel="stylesheet"
+  /><style>
+    * {
+      font-family: var(--font-family-body);
+    }
+  </style>
+  <style>
+    :root {
+      --background: #0f1724;
+      --foreground: #e6eef6;
+      --border: #2b3440;
+      --input: #111827;
+      --primary: #0b74d1;
+      --primary-foreground: #ffffff;
+      --secondary: #1f6f8b;
+      --secondary-foreground: #ffffff;
+      --muted: #24303a;
+      --muted-foreground: #9fb3c8;
+      --success: #16a34a;
+      --success-foreground: #ffffff;
+      --accent: #f59e0b;
+      --accent-foreground: #0b1720;
+      --destructive: #dc2626;
+      --destructive-foreground: #ffffff;
+      --warning: #fbbf24;
+      --warning-foreground: #0b1720;
+      --card: #0e1620;
+      --card-foreground: #e6eef6;
+      --sidebar: #0b1220;
+      --sidebar-foreground: #cfe8ff;
+      --sidebar-primary: #0b74d1;
+      --sidebar-primary-foreground: #ffffff;
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      --radius-xl: 12px;
+      --font-family-body: "Inter", "Inter Fallback";
+    }
+  </style>
+  <html>
+    <head>
+      <style>
+        * {
+          box-sizing: border-box;
+        }
+        .page {
+          min-height: 644px;
+          background: var(--background);
+          color: var(--foreground);
+          display: flex;
+          flex-direction: column;
+        }
+        .topbar {
+          background: var(--sidebar);
+          border-bottom: 1px solid var(--border);
+        }
+        .container {
+          max-width: 1120px;
+          margin: 0 auto;
+          padding: 16px 24px;
+        }
+        .nav {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .brand {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+        }
+        .mark {
+          width: 28px;
+          height: 28px;
+          border-radius: var(--radius-md);
+          background: linear-gradient(140deg, var(--primary), var(--accent));
+          position: relative;
+        }
+        .mark::after {
+          content: "";
+          position: absolute;
+          inset: 6px;
+          border-radius: var(--radius-sm);
+          background: var(--primary-foreground);
+          opacity: 0.14;
+        }
+        .brand-name {
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--sidebar-foreground);
+        }
+        .nav-links {
+          display: flex;
+          gap: 16px;
+        }
+        .nav-links a {
+          color: var(--sidebar-foreground);
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 500;
+          padding: 8px 10px;
+          border-radius: var(--radius-md);
+        }
+        .actions {
+          display: flex;
+          gap: 10px;
+        }
+        .btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 12px;
+          border-radius: var(--radius-md);
+          border: 1px solid var(--border);
+          background: var(--card);
+          color: var(--card-foreground);
+          font-size: 14px;
+          font-weight: 500;
+          text-decoration: none;
+        }
+        .btn.primary {
+          background: var(--primary);
+          color: var(--primary-foreground);
+          border-color: var(--primary);
+        } /* Hero */
+        .hero {
+          padding: 72px 24px 56px 24px;
+          border-bottom: 1px solid var(--border);
+          background: linear-gradient(
+            180deg,
+            var(--background),
+            var(--secondary)
+          );
+        }
+        .hero-wrap {
+          max-width: 1120px;
+          margin: 0 auto;
+          display: flex;
+          gap: 48px;
+          align-items: center;
+        }
+        .hero-copy {
+          flex: 1;
+        }
+        .kicker {
+          font-size: 12px;
+          font-weight: 500;
+          color: var(--muted-foreground);
+          margin-bottom: 8px;
+          letter-spacing: 0.2px;
+        }
+        .title {
+          font-size: 40px;
+          line-height: 1.1;
+          font-weight: 700;
+          margin: 0 0 12px;
+          color: var(--foreground);
+        }
+        .subtitle {
+          font-size: 16px;
+          line-height: 1.6;
+          color: var(--muted-foreground);
+        }
+        .hero-cta {
+          display: flex;
+          gap: 10px;
+          margin-top: 20px;
+        }
+        .hero-media {
+          flex: 1;
+          display: flex;
+          justify-content: flex-end;
+        }
+        .phone-card {
+          width: 360px;
+          border-radius: var(--radius-lg);
+          background: var(--card);
+          border: 1px solid var(--border);
+          padding: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+        .phone-top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 10px;
+          border-radius: var(--radius-md);
+          background: var(--secondary);
+          color: var(--secondary-foreground);
+          font-size: 13px;
+          font-weight: 500;
+        }
+        .mock {
+          height: 220px;
+          border-radius: var(--radius-md);
+          background: linear-gradient(140deg, var(--primary), var(--accent));
+          border: 1px solid var(--border);
+        } /* Social proof bar */
+        .proof {
+          padding: 16px 24px;
+          border-bottom: 1px solid var(--border);
+          background: var(--background);
+        }
+        .proof-wrap {
+          max-width: 1120px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          color: var(--muted-foreground);
+          font-size: 13px;
+        }
+        .logos {
+          display: flex;
+          gap: 16px;
+          align-items: center;
+        }
+        .logo-min {
+          height: 18px;
+          width: 84px;
+          border-radius: 4px;
+          background: var(--muted);
+        } /* Sections */
+        section {
+          background: var(--background);
+        }
+        .section {
+          padding: 64px 24px;
+          border-bottom: 1px solid var(--border);
+        }
+        .wrap {
+          max-width: 1120px;
+          margin: 0 auto;
+        }
+        .h2 {
+          font-size: 26px;
+          font-weight: 700;
+          margin: 0 0 8px;
+          color: var(--foreground);
+        }
+        .p {
+          font-size: 15px;
+          line-height: 1.6;
+          color: var(--muted-foreground);
+        } /* Feature grid */
+        .grid3 {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 16px;
+          margin-top: 20px;
+        }
+        .card {
+          background: var(--card);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-lg);
+          padding: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .card h3 {
+          font-size: 18px;
+          margin: 0;
+          color: var(--card-foreground);
+        }
+        .list {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-top: 4px;
+        }
+        .li {
+          display: flex;
+          gap: 8px;
+          align-items: flex-start;
+          color: var(--card-foreground);
+          font-size: 14px;
+        } /* Split section */
+        .split {
+          display: grid;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 24px;
+          margin-top: 20px;
+        }
+        .panel {
+          background: var(--card);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-lg);
+          padding: 16px;
+        } /* KPI row */
+        .kpis {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 16px;
+          margin-top: 16px;
+        }
+        .kpi {
+          background: var(--secondary);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-lg);
+          padding: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+        .num {
+          font-size: 24px;
+          font-weight: 700;
+          color: var(--foreground);
+        }
+        .small {
+          font-size: 13px;
+          color: var(--muted-foreground);
+        } /* Testimonials */
+        .testi {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 16px;
+          margin-top: 16px;
+        }
+        .quote {
+          background: var(--card);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-lg);
+          padding: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+        .person {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .person img {
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+        } /* Data */
+        .img {
+          width: 100%;
+          height: 140px;
+          border-radius: var(--radius-md);
+          object-fit: cover;
+          border: 1px solid var(--border);
+        } /* Contact */
+        .form {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+          margin-top: 16px;
+        }
+        .input {
+          background: var(--input);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-md);
+          padding: 12px;
+          color: var(--foreground);
+          font-size: 14px;
+        }
+        .input.textarea {
+          height: 120px;
+        }
+        .submit {
+          margin-top: 12px;
+        }
+        .footer {
+          padding: 24px;
+          color: var(--muted-foreground);
+          font-size: 13px;
+          border-top: 1px solid var(--border);
+        }
+      </style>
+
+    </head>
+   <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alerta Persona Web</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Alpine.js for menu toggle -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Iconify -->
+  <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --background: #0f1724;
+      --foreground: #e6eef6;
+      --muted-foreground: #9fb3c8;
+      --border: #2b3440;
+      --card: #0e1620;
+      --primary: #0b74d1;
+      --secondary: #1f6f8b;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      scroll-behavior: smooth;
+    }
+
+    section {
+      border-bottom: 1px solid var(--border);
+    }
+
+    header {
+      backdrop-filter: blur(8px);
+      background-color: rgba(11,116,209,0.85);
+    }
+  </style>
+</head>
+
+<body class="bg-[var(--background)] text-[var(--foreground)]">
+
+  <!-- NAVIGATION -->
+  <header class="sticky top-0 z-50" x-data="{ open: false }">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <img src="assets/Logo.svg" alt="Logo" class="w-8 h-8 rounded-md" />
+        <span class="font-semibold text-white text-lg">Alerta Persona</span>
+      </div>
+
+      <!-- Burger button -->
+      <button @click="open = !open" class="md:hidden text-white text-2xl">
+        <iconify-icon icon="lucide:menu"></iconify-icon>
+      </button>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex space-x-6">
+        <a href="#inicio" class="hover:text-blue-300">Inicio</a>
+        <a href="#producto" class="hover:text-blue-300">Producto</a>
+        <a href="#mision" class="hover:text-blue-300">Misión</a>
+        <a href="#nosotros" class="hover:text-blue-300">Nosotros</a>
+          <a href="#encuesta" class="hover:text-blue-300">Encuesta</a> <!-- Added this -->
+        <a href="#contacto" class="hover:text-blue-300">Contacto</a>
+      </nav>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div
+      x-show="open"
+      x-transition
+      class="md:hidden bg-[var(--card)] border-t border-[var(--border)] px-4 py-2 flex flex-col space-y-2"
+    >
+      <a href="#inicio" class="hover:text-blue-300" @click="open = false">Inicio</a>
+      <a href="#producto" class="hover:text-blue-300" @click="open = false">Producto</a>
+      <a href="#mision" class="hover:text-blue-300" @click="open = false">Misión</a>
+      <a href="#nosotros" class="hover:text-blue-300" @click="open = false">Nosotros</a>
+       <a href="#encuesta" class="hover:text-blue-300" @click="open = false">Encuesta</a> <!-- Added this -->
+      <a href="#contacto" class="hover:text-blue-300" @click="open = false">Contacto</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="inicio" class="py-20 px-6 md:px-10 bg-gradient-to-b from-[var(--background)] to-[var(--secondary)]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
+      <div class="flex-1" data-aos="fade-right">
+        <p class="text-sm text-[var(--muted-foreground)] uppercase mb-2 tracking-wide">Ayuda mutua, con rigor y claridad</p>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+          Alertas de emergencia confiables para coordinar ayuda en segundos
+        </h1>
+        <p class="text-[var(--muted-foreground)] mb-6">
+          Una experiencia simple para notificar a tu red de confianza, compartir ubicación y organizar la respuesta sin fricción.
+        </p>
+        <a href="assets/alerta-persona.apk" download
+          class="inline-flex items-center gap-2 bg-[var(--primary)] px-6 py-3 rounded-md text-white font-semibold hover:opacity-90 hover:scale-[1.03] transition-transform duration-300 shadow-lg shadow-blue-700/30">
+          <iconify-icon icon="lucide:download"></iconify-icon> Descargar APP
+        </a>
+      </div>
+
+      <div class="flex-1" data-aos="fade-left">
+        <video class="rounded-lg border border-[var(--border)] w-full shadow-xl" autoplay muted loop playsinline>
+          <source src="assets/demo.mp4" type="video/mp4" />
+          Tu navegador no soporta video.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISIÓN -->
+  <section id="mision" class="py-20 px-6" data-aos="fade-up">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Nuestra Misión</h2>
+      <p class="text-[var(--muted-foreground)] max-w-3xl mx-auto leading-relaxed">
+        Fortalecer la seguridad comunitaria mediante tecnología accesible, humana y responsable.
+        Queremos que cada persona pueda pedir y ofrecer ayuda con confianza, sabiendo que su información está protegida y la respuesta es inmediata.
+      </p>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros" class="py-20 px-6 bg-[var(--card)]" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="text-3xl font-bold mb-4">Sobre Nosotros</h2>
+        <p class="text-[var(--muted-foreground)] mb-4 leading-relaxed">
+          Somos un equipo interdisciplinario de diseñadores, desarrolladores y especialistas en emergencias con un propósito común: facilitar la coordinación entre personas en situaciones críticas.
+        </p>
+        <p class="text-[var(--muted-foreground)] leading-relaxed">
+          Trabajamos con principios de diseño ético, centrado en las personas, y con un compromiso permanente con la transparencia y la accesibilidad.
+        </p>
+      </div>
+
+      <!-- Team photos -->
+      <div class="flex flex-col items-center md:items-end space-y-6">
+        <div class="flex gap-6">
+          <img
+            src="assets/dev1.png.jpg"
+            alt="Desarrollador 1"
+            class="w-40 h-40 rounded-full border-2 border-[var(--primary)] object-cover shadow-lg hover:scale-[1.05] transition-transform duration-300"
+            data-aos="zoom-in"
+          />
+          <img
+            src="assets/dev2.jpeg.jpg"
+            alt="Desarrollador 2"
+            class="w-40 h-40 rounded-full border-2 border-[var(--primary)] object-cover shadow-lg hover:scale-[1.05] transition-transform duration-300"
+            data-aos="zoom-in"
+          />
+        </div>
+        <p class="text-[var(--muted-foreground)] text-sm text-center md:text-right italic">
+          Palallama Dev. <br>Fundadores, diseñadores y desarrolladores de Alerta Persona.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- SURVEY RESULTS -->
+<section id="encuesta" class="py-20 px-6 bg-[var(--card)]" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-4">Encuesta</h2>
+    <p class="text-[var(--muted-foreground)] mb-10">
+      El acoso sexual callejero es una de las formas más naturalizadas de violencia contra las mujeres y personas LGBTIQ+, especialmente cuando son adolescentes o jóvenes. El 97% de las mujeres han sufrido acoso callejero y la gran mayoría de las encuestadas revelan que comenzaron a padecer estas situaciones desde los 13 años. Nuestra manera de contribuir con las víctimas es facilitar una aplicación donde, de manera colaborativa y voluntaria, se podrá asistir a personas en situaciones de riesgo y/o vulnerabilidad.
+    </p>
+
+    <!-- Chart Container -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Chart 1: User Satisfaction -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-lg p-6">
+        <h3 class="font-semibold mb-4">¿Alguna vez te sentiste en peligro en la vía pública?</h3>
+        <canvas id="satisfactionChart"></canvas>
+      </div>
+          
+      <!-- Chart 2: Usage Frequency -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-lg p-6">
+        <h3 class="font-semibold mb-4">Edades de encuestados/as</h3>
+        <canvas id="usageChart"></canvas>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Chart.js Script -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // User Satisfaction Chart
+  const satisfactionCtx = document.getElementById('satisfactionChart').getContext('2d');
+  const satisfactionChart = new Chart(satisfactionCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['sí', 'no'],
+      datasets: [{
+        label: 'Encuestados responden: ¿Alguna vez te sentiste en peligro en la vía pública?',
+        data: [ 79.1, 20.9], // Example data
+        backgroundColor: ['#FF0000', '#0b74d1'],
+        borderColor: '#2b3440',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        tooltip: {
+          callbacks: {
+            label: function(tooltipItem) {
+              return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+
+
+
+
+  // Usage Frequency Chart
+  const usageCtx = document.getElementById('usageChart').getContext('2d');
+  const usageChart = new Chart(usageCtx, {
+    type: 'bar',
+    data: {
+      labels: ['13-17', '18-24', '25-34', '35-45', 'Mayor de 45'],
+      datasets: [{
+        label: 'Edades de encuestados/as',
+        data: [ 2.9 , 25.4, 29.9, 34.3, 7.5], // Example data
+        backgroundColor: '#0b74d1',
+        borderColor: '#2b3440',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'top',
+        }
+      }
+    }
+  });
+</script>
+
+
+  <!-- PRODUCTO -->
+  <section id="producto" class="py-20 px-6" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-4 text-center">Diseñado para lo crítico</h2>
+      <p class="text-[var(--muted-foreground)] text-center mb-10">
+        Arquitectura clara, mínima latencia y controles centrados en la acción correcta.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-lg p-6 hover:scale-[1.03] transition-transform duration-300">
+          <h3 class="font-semibold mb-2 flex items-center gap-2"><iconify-icon icon="lucide:alarm-check"></iconify-icon> Alertas precisas</h3>
+          <ul class="text-[var(--muted-foreground)] space-y-2 text-sm">
+            <li>🔹 Un toque envía estado y ubicación en tiempo real.</li>
+            <li>🔹 Enlace de mapa accesible para tu red.</li>
+            <li>🔹 Confirmaciones de recepción y seguimiento.</li>
+          </ul>
+        </div>
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-lg p-6 hover:scale-[1.03] transition-transform duration-300">
+          <h3 class="font-semibold mb-2 flex items-center gap-2"><iconify-icon icon="lucide:users"></iconify-icon> Red confiable</h3>
+          <ul class="text-[var(--muted-foreground)] space-y-2 text-sm">
+            <li>🔹 Prioriza contactos de emergencia.</li>
+            <li>🔹 Privacidad por defecto.</li>
+            <li>🔹 Roles y comunicación clara.</li>
+          </ul>
+        </div>
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-lg p-6 hover:scale-[1.03] transition-transform duration-300">
+          <h3 class="font-semibold mb-2 flex items-center gap-2"><iconify-icon icon="lucide:line-chart"></iconify-icon> Preparación</h3>
+          <ul class="text-[var(--muted-foreground)] space-y-2 text-sm">
+            <li>🔹 Pruebas programadas y recordatorios.</li>
+            <li>🔹 Protocolos sugeridos y seguros.</li>
+            <li>🔹 Historial para aprendizaje.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="py-20 px-6 bg-[var(--card)]" data-aos="fade-up">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Contáctanos</h2>
+      <p class="text-[var(--muted-foreground)] mb-8">
+        ¿Tienes preguntas o deseas colaborar? Envíanos un mensaje.
+      </p>
+
+      <form class="grid gap-4 md:grid-cols-2" action="https://formspree.io/f/your-form-id" method="POST">
+        <input type="text" name="nombre" placeholder="Nombre" class="bg-[var(--background)] border border-[var(--border)] rounded-md p-3" required />
+        <input type="email" name="email" placeholder="Correo electrónico" class="bg-[var(--background)] border border-[var(--border)] rounded-md p-3" required />
+        <textarea name="mensaje" placeholder="Mensaje" class="md:col-span-2 bg-[var(--background)] border border-[var(--border)] rounded-md p-3 h-32"></textarea>
+        <button type="submit" class="md:col-span-2 bg-[var(--primary)] text-white py-3 rounded-md font-medium hover:opacity-90 transition-all duration-300">
+          <iconify-icon icon="lucide:send"></iconify-icon> Enviar
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-6 text-[var(--muted-foreground)] text-sm border-t border-[var(--border)]">
+    © 2025 Alerta Persona — Derechos reservados.
+  </footer>
+
+  <!-- Initialize AOS -->
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 80,
+    });
+  </script>
+
+</body>
+</html>

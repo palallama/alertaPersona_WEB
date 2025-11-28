@@ -1,0 +1,319 @@
+<!-- NAVIGATION -->
+<header class="sticky top-0 z-50 backdrop-blur-lg bg-[rgba(11,116,209,0.85)]">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+    <!-- <div class="flex items-center space-x-2">
+      <img src="assets/images/Logo.svg" alt="Logo" class="w-8 h-8 rounded-md" />
+      <span class="font-semibold text-white text-lg">Alerta Persona</span>
+    </div> -->
+
+    <app-logo [logoMaxWidth]="60" [showText]="true"></app-logo>
+
+    <!-- Burger button -->
+    <button (click)="open = !open" class="md:hidden text-white text-2xl">
+      <ng-icon name="lucideMenu"></ng-icon>
+    </button>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex space-x-6 text-white">
+      <a href="#inicio" class="hover:text-blue-300 transition-colors menuOption">Inicio</a>
+      <a href="#producto" class="hover:text-blue-300 transition-colors menuOption">Producto</a>
+      <a href="#mision" class="hover:text-blue-300 transition-colors menuOption">Misión</a>
+      <a href="#nosotros" class="hover:text-blue-300 transition-colors menuOption">Nosotros</a>
+      <a href="#encuesta" class="hover:text-blue-300 transition-colors menuOption">Encuesta</a>
+      <a href="#contacto" class="hover:text-blue-300 transition-colors menuOption">Contacto</a>
+    </nav>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div
+    [class.hidden]="!open"
+    class="md:hidden bg-[var(--card)] border-t border-[var(--border)] px-4 py-2 flex flex-col space-y-2 transition-all"
+  >
+    <a href="#inicio" class="hover:text-blue-300 transition-colors" (click)="open = false">Inicio</a>
+    <a href="#producto" class="hover:text-blue-300 transition-colors" (click)="open = false">Producto</a>
+    <a href="#mision" class="hover:text-blue-300 transition-colors" (click)="open = false">Misión</a>
+    <a href="#nosotros" class="hover:text-blue-300 transition-colors" (click)="open = false">Nosotros</a>
+    <a href="#encuesta" class="hover:text-blue-300 transition-colors" (click)="open = false">Encuesta</a>
+    <a href="#contacto" class="hover:text-blue-300 transition-colors" (click)="open = false">Contacto</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="inicio" class="py-20 px-6 md:px-10 bg-gradient-to-b from-[var(--background)] to-[var(--secondary)] border-b border-[var(--border)]">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
+    <div class="flex-1" data-aos="fade-right">
+      <p class="text-sm text-[var(--muted-foreground)] uppercase mb-2 tracking-wide">Ayuda mutua, con rigor y claridad</p>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+        Alertas de emergencia confiables para coordinar ayuda en segundos
+      </h1>
+      <p class="text-[var(--muted-foreground)] mb-6 leading-relaxed">
+        Una experiencia simple para notificar a tu red de confianza, compartir ubicación y organizar la respuesta sin fricción.
+      </p>
+      <a href="/AlertaPersona_v0.1.apk" download="AlertaPersona_v0.1.apk" type="application/vnd.android.package-archive"
+        class="inline-flex items-center gap-2 bg-[var(--primary)] px-6 py-3 rounded-md text-white font-semibold hover:opacity-90 hover:scale-[1.03] transition-transform duration-300 shadow-lg shadow-blue-700/30"
+        style="text-decoration: none;"
+      >
+        <ng-icon name="lucideDownload"></ng-icon> Descargar APP
+      </a>
+    </div>
+
+    <div class="flex-1" data-aos="fade-left">
+      <!-- <video class="rounded-lg border border-[var(--border)] w-full shadow-xl" autoplay muted loop playsinline>
+        <source src="assets/videos/demo.mp4" type="video/mp4" />
+        Tu navegador no soporta video.
+      </video> -->
+      <img 
+        src="assets/images/landing_1.webp" 
+        alt="Mockup de la aplicación Alerta Persona" 
+        class="rounded-lg w-full shadow-xl"
+        style="border: 2px solid black"
+      >
+    </div>
+  </div>
+</section>
+
+<!-- MISIÓN -->
+<section id="mision" class="py-20 px-6 border-b border-[var(--border)]" data-aos="fade-up">
+  <div class="max-w-5xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-4">Nuestra Misión</h2>
+    <p class="text-[var(--muted-foreground)] max-w-3xl mx-auto leading-relaxed">
+      Fortalecer la seguridad comunitaria mediante tecnología accesible, humana y responsable.
+      Queremos que cada persona pueda pedir y ofrecer ayuda con confianza, sabiendo que su información está protegida y la respuesta es inmediata.
+    </p>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros" class="py-20 px-6 bg-[var(--card)] border-b border-[var(--border)]" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <h2 class="text-3xl font-bold mb-4">Sobre Nosotros</h2>
+      <p class="text-[var(--muted-foreground)] mb-4 leading-relaxed">
+        Somos un equipo interdisciplinario de diseñadores, desarrolladores y especialistas en emergencias con un propósito común: facilitar la coordinación entre personas en situaciones críticas.
+      </p>
+      <p class="text-[var(--muted-foreground)] leading-relaxed">
+        Trabajamos con principios de diseño ético, centrado en las personas, y con un compromiso permanente con la transparencia y la accesibilidad.
+      </p>
+    </div>
+
+    <!-- Team photos -->
+    <div class="flex flex-col items-center md:items-end space-y-6">
+      <div class="flex gap-6">
+        <img
+          src="assets/images/dev1.jpg"
+          alt="Desarrollador 1"
+          class="w-40 h-40 rounded-full border-2 border-[var(--primary)] object-cover shadow-lg hover:scale-[1.05] transition-transform duration-300"
+          data-aos="zoom-in"
+        />
+        <img
+          src="assets/images/dev2.jpg"
+          alt="Desarrollador 2"
+          class="w-40 h-40 rounded-full border-2 border-[var(--primary)] object-cover shadow-lg hover:scale-[1.05] transition-transform duration-300"
+          data-aos="zoom-in"
+        />
+      </div>
+      <p class="text-[var(--muted-foreground)] text-sm text-center md:text-right italic">
+        Palallama Dev. <br>Fundadores, diseñadores y desarrolladores de Alerta Persona.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SURVEY RESULTS -->
+<section id="encuesta" class="py-20 px-6 bg-[var(--card)] border-b border-[var(--border)]" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-4">Encuesta</h2>
+    <p class="text-[var(--muted-foreground)] mb-10 leading-relaxed">
+      El acoso sexual callejero es una de las formas más naturalizadas de violencia contra las mujeres y personas LGBTIQ+, especialmente cuando son adolescentes o jóvenes. El 97% de las mujeres han sufrido acoso callejero y la gran mayoría de las encuestadas revelan que comenzaron a padecer estas situaciones desde los 13 años. Nuestra manera de contribuir con las víctimas es facilitar una aplicación donde, de manera colaborativa y voluntaria, se podrá asistir a personas en situaciones de riesgo y/o vulnerabilidad.
+    </p>
+
+    <!-- Chart Container -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Chart 1: User Satisfaction -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-lg p-6">
+        <h3 class="font-semibold mb-4">¿Alguna vez te sentiste en peligro en la vía pública?</h3>
+        <div class="graficos">
+          <canvas id="satisfactionChart"></canvas>
+        </div>
+      </div>
+          
+      <!-- Chart 2: Usage Frequency -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-lg p-6">
+        <h3 class="font-semibold mb-4">Edades de encuestados/as</h3>
+        <div class="graficos">
+          <canvas id="usageChart"></canvas>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTO -->
+<section id="producto" class="py-20 px-6 border-b border-[var(--border)]" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold mb-4 text-center">Diseñado para lo crítico</h2>
+    <p class="text-[var(--muted-foreground)] text-center mb-10">
+      Arquitectura clara, mínima latencia y controles centrados en la acción correcta.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-lg p-6 hover:scale-[1.03] transition-transform duration-300">
+        <h3 class="font-semibold mb-2 flex items-center gap-2">
+          <ng-icon name="lucideAlarmCheck"></ng-icon> Alertas precisas
+        </h3>
+        <ul class="text-[var(--muted-foreground)] space-y-2 text-sm">
+          <li>🔹 Un toque envía estado y ubicación en tiempo real.</li>
+          <li>🔹 Enlace de mapa accesible para tu red.</li>
+          <li>🔹 Confirmaciones de recepción y seguimiento.</li>
+        </ul>
+      </div>
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-lg p-6 hover:scale-[1.03] transition-transform duration-300">
+        <h3 class="font-semibold mb-2 flex items-center gap-2">
+          <ng-icon name="lucideUsers"></ng-icon> Red confiable
+        </h3>
+        <ul class="text-[var(--muted-foreground)] space-y-2 text-sm">
+          <li>🔹 Prioriza contactos de emergencia.</li>
+          <li>🔹 Privacidad por defecto.</li>
+          <li>🔹 Roles y comunicación clara.</li>
+        </ul>
+      </div>
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-lg p-6 hover:scale-[1.03] transition-transform duration-300">
+        <h3 class="font-semibold mb-2 flex items-center gap-2">
+          <ng-icon name="lucideLineChart"></ng-icon> Preparación
+        </h3>
+        <ul class="text-[var(--muted-foreground)] space-y-2 text-sm">
+          <li>🔹 Pruebas programadas y recordatorios.</li>
+          <li>🔹 Protocolos sugeridos y seguros.</li>
+          <li>🔹 Historial para aprendizaje.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="py-20 px-6 bg-[var(--card)] border-b border-[var(--border)]" data-aos="fade-up">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-4">Contáctanos</h2>
+    <p class="text-[var(--muted-foreground)] mb-8">
+      ¿Tienes preguntas o deseas colaborar? Envíanos un mensaje.
+    </p>
+
+    <form 
+      class="grid gap-4 md:grid-cols-2" 
+      (submit)="onSubmitContact($event)"
+      #contactForm="ngForm"
+      novalidate
+    >
+      <div class="flex flex-col">
+        <input 
+          type="text" 
+          name="nombre" 
+          #nombre="ngModel"
+          [(ngModel)]="formData.nombre"
+          placeholder="Nombre" 
+          class="bg-[var(--background)] border border-[var(--border)] rounded-md p-3 text-[var(--foreground)]"
+          [class.border-red-500]="nombre.invalid && nombre.touched"
+          required 
+          minlength="2"
+          maxlength="100"
+        />
+        @if (nombre.invalid && nombre.touched) {
+          <span class="text-red-500 text-xs mt-1">
+            @if (nombre.errors?.['required']) {
+              El nombre es requerido
+            }
+            @if (nombre.errors?.['minlength']) {
+              Mínimo 2 caracteres
+            }
+          </span>
+        }
+      </div>
+
+      <div class="flex flex-col">
+        <input 
+          type="email" 
+          name="_replyto" 
+          #email="ngModel"
+          [(ngModel)]="formData.email"
+          placeholder="Correo electrónico" 
+          class="bg-[var(--background)] border border-[var(--border)] rounded-md p-3 text-[var(--foreground)]"
+          [class.border-red-500]="email.invalid && email.touched"
+          required 
+          email
+          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+        />
+        @if (email.invalid && email.touched) {
+          <span class="text-red-500 text-xs mt-1">
+            @if (email.errors?.['required']) {
+              El email es requerido
+            }
+            @if (email.errors?.['email'] || email.errors?.['pattern']) {
+              Email inválido (ejemplo: usuario@correo.com)
+            }
+          </span>
+        }
+      </div>
+
+      <div class="md:col-span-2 flex flex-col">
+        <textarea 
+          name="message" 
+          #mensaje="ngModel"
+          [(ngModel)]="formData.mensaje"
+          placeholder="Mensaje" 
+          class="bg-[var(--background)] border border-[var(--border)] rounded-md p-3 h-32 text-[var(--foreground)]"
+          [class.border-red-500]="mensaje.invalid && mensaje.touched"
+          required
+          minlength="10"
+          maxlength="1000"
+        ></textarea>
+        @if (mensaje.invalid && mensaje.touched) {
+          <span class="text-red-500 text-xs mt-1">
+            @if (mensaje.errors?.['required']) {
+              El mensaje es requerido
+            }
+            @if (mensaje.errors?.['minlength']) {
+              Mínimo 10 caracteres
+            }
+          </span>
+        }
+        @if (mensaje.valid && formData.mensaje.length > 0) {
+          <span class="text-gray-500 text-xs mt-1">
+            {{ formData.mensaje.length }}/1000 caracteres
+          </span>
+        }
+      </div>
+      
+      <!-- Protección anti-spam -->
+      <input type="text" name="_gotcha" style="display:none" />
+      
+      <!-- Mensaje de feedback -->
+      @if (submitMessage) {
+        <div class="md:col-span-2 p-3 rounded-md text-center font-medium" 
+             [class.bg-green-100]="submitSuccess" 
+             [class.text-green-800]="submitSuccess"
+             [class.bg-red-100]="!submitSuccess"
+             [class.text-red-800]="!submitSuccess">
+          {{ submitMessage }}
+        </div>
+      }
+      
+      <button 
+        type="submit" 
+        [disabled]="isSubmitting || contactForm.invalid"
+        class="md:col-span-2 bg-[var(--primary)] text-white py-3 rounded-md font-medium hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        @if (isSubmitting) {
+          <span>Enviando...</span>
+        } @else {
+          <ng-icon name="lucideSend"></ng-icon>
+          <span>Enviar</span>
+        }
+      </button>
+    </form>
+  </div>
+</section>
+
+<app-footer></app-footer>

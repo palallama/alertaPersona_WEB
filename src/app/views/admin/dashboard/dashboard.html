@@ -1,0 +1,98 @@
+<div class="dashboard-container">
+    <app-navbar></app-navbar>
+  <div class="container-fluid p-4">
+    <!-- Título -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <!-- <h1 class="dashboard-title">Dashboard de Alertas</h1> -->
+        <p class="">Resumen y estadísticas del sistema</p>
+      </div>
+    </div>
+
+    <!-- Tarjetas de Estadísticas -->
+    <div class="row mb-4 g-3">
+      <!-- Total Usuarios -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <p-card styleClass="stat-card stat-card-primary">
+          <div class="stat-content">
+            <div class="stat-icon">
+              <ng-icon name="lucideUsers" class="stat-icon-custom"></ng-icon>
+            </div>
+            <div class="stat-details">
+              <h3 class="stat-number">{{ stats().totalUsuarios }}</h3>
+              <p class="stat-label">Usuarios Registrados</p>
+            </div>
+          </div>
+        </p-card>
+      </div>
+
+      <!-- Total Alertas -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <p-card styleClass="stat-card stat-card-danger">
+          <div class="stat-content">
+            <div class="stat-icon">
+              <ng-icon name="lucideBell" class="stat-icon-custom"></ng-icon>
+            </div>
+            <div class="stat-details">
+              <h3 class="stat-number">{{ stats().totalAlertas }}</h3>
+              <p class="stat-label">Alertas Emitidas</p>
+            </div>
+          </div>
+        </p-card>
+      </div>
+
+      <!-- Falsas Alertas -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <p-card styleClass="stat-card stat-card-warning">
+          <div class="stat-content">
+            <div class="stat-icon">
+              <ng-icon name="lucideXCircle" class="stat-icon-custom"></ng-icon>
+            </div>
+            <div class="stat-details">
+              <h3 class="stat-number">{{ stats().alertasCanceladas }}</h3>
+              <p class="stat-label">Alertas Canceladas</p>
+              <small class="stat-percentage">({{ porcentajeAlertasCanceladas }}% del total)</small>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    </div>
+
+    <!-- Gráficas -->
+    <div class="row g-3">
+      <!-- Alertas por Día (Última Semana) -->
+      <div class="col-12 col-lg-6">
+        <p-card>
+          <ng-template pTemplate="header">
+            <div class="card-header-custom">
+              <h4 class="mb-0">Alertas de la Última Semana</h4>
+            </div>
+          </ng-template>
+          <p-chart type="line" [data]="alertasPorDiaData" [options]="alertasPorDiaOptions" height="300px"></p-chart>
+        </p-card>
+      </div>
+
+      <!-- Alertas por Hora del Día (24hs) -->
+      <div class="col-12 col-lg-6">
+        <p-card>
+          <ng-template pTemplate="header">
+            <div class="card-header-custom">
+              <h4 class="mb-0">Distribución de Alertas por Hora del Día</h4>
+              <small class="">Patrón de alertas en las 24 horas</small>
+            </div>
+          </ng-template>
+          <p-chart type="line" [data]="alertasPorHoraData" [options]="alertasPorHoraOptions" height="250px"></p-chart>
+        </p-card>
+      </div>
+
+    </div>
+  </div>
+    <!-- Footer -->
+    <app-footer></app-footer>
+</div>
+
+<!-- Confirmation Dialog -->
+<p-confirmDialog></p-confirmDialog>
+
+<!-- Toast Notifications -->
+<p-toast position="bottom-right"></p-toast>
