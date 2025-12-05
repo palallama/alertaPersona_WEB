@@ -49,9 +49,11 @@
       <p class="text-[var(--muted-foreground)] mb-6 leading-relaxed">
         Una experiencia simple para notificar a tu red de confianza, compartir ubicación y organizar la respuesta sin fricción.
       </p>
-      <a href="/AlertaPersona_v0.1.apk" download="AlertaPersona_v0.1.apk" type="application/vnd.android.package-archive"
-        class="inline-flex items-center gap-2 bg-[var(--primary)] px-6 py-3 rounded-md text-white font-semibold hover:opacity-90 hover:scale-[1.03] transition-transform duration-300 shadow-lg shadow-blue-700/30"
-        style="text-decoration: none;"
+      <a [href]="apkDownloadUrl" 
+         [download]="apkFileName" 
+         type="application/vnd.android.package-archive"
+         class="inline-flex items-center gap-2 bg-[var(--primary)] px-6 py-3 rounded-md text-white font-semibold hover:opacity-90 hover:scale-[1.03] transition-transform duration-300 shadow-lg shadow-blue-700/30"
+         style="text-decoration: none;"
       >
         <ng-icon name="lucideDownload"></ng-icon> Descargar APP
       </a>

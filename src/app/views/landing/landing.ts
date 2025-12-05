@@ -5,6 +5,7 @@ import { AppLogo } from "../../components/app-logo";
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Footer } from "src/app/components/footer";
+import { APP_CONFIG } from '../../core/config/app.config';
 
 @Component({
   selector: 'app-landing',
@@ -21,6 +22,17 @@ export class LandingComponent implements OnInit, AfterViewInit {
   private platformId = inject(PLATFORM_ID);
   private http = inject(HttpClient);
   open = false;
+  
+  // Configuración de la APK
+  readonly apkConfig = APP_CONFIG.apk;
+  
+  get apkDownloadUrl(): string {
+    return `${this.apkConfig.baseUrl}${this.apkConfig.version}${this.apkConfig.extension}`;
+  }
+  
+  get apkFileName(): string {
+    return `AlertaPersona_${this.apkConfig.version}${this.apkConfig.extension}`;
+  }
   
   // Modelo del formulario
   formData = {
