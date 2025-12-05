@@ -23,7 +23,8 @@ export class AppConfigService {
   loadConfig(): Observable<AppVersionConfig> {
     return this.http.get<AppVersionConfig>('/apk/version.json').pipe(
       tap(config => this.configSubject.next(config)),
-      catchError(() => {
+      catchError((error) => {
+        console.error('Error loading config:', error);
         // Fallback en caso de error
         const fallbackConfig: AppVersionConfig = {
           apk: { 

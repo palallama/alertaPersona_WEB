@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit, PLATFORM_ID, inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, AfterViewInit, PLATFORM_ID, inject, signal } from '@angular/core';
+import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { NgIcon } from '@ng-icons/core';
 import { AppLogo } from "../../components/app-logo";
 import { HttpClient } from '@angular/common/http';
@@ -13,27 +13,22 @@ import { AppConfigService } from '../../core/services/app-config.service';
     NgIcon,
     AppLogo,
     FormsModule,
-    Footer
-],
+    Footer,
+    NgOptimizedImage
+  ],
   templateUrl: './landing.html',
   styleUrl: './landing.scss',
 })
 export class LandingComponent implements OnInit, AfterViewInit {
   private platformId = inject(PLATFORM_ID);
   private http = inject(HttpClient);
-  private appConfigService = inject(AppConfigService);
+  public appConfigService = inject(AppConfigService);
   open = false;
   
   // Configuración de la APK
-  apkVersion = 'v0.1'; // valor inicial mientras carga
-  
-  get apkDownloadUrl(): string {
-    return this.appConfigService.getApkDownloadUrl();
-  }
-  
-  get apkFileName(): string {
-    return this.appConfigService.getApkFileName();
-  }
+  apkVersion = signal('v0.1');
+  apkDownloadUrl = signal('/AlertaPersona_v0.1.apk');
+  apkFileName = signal('AlertaPersona_v0.1.apk');
   
   // Modelo del formulario
   formData = {
@@ -48,12 +43,19 @@ export class LandingComponent implements OnInit, AfterViewInit {
   submitSuccess = false;
 
   ngOnInit() {
-    // Cargar configuración de versión
-    this.appConfigService.loadConfig().subscribe({
-      next: (config) => {
-        this.apkVersion = config.apk.version;
-      }
-    });
+    // Cargar configuración de versión solo en el navegador
+    if (isPlatformBrowser(this.platformId)) {
+      this.appConfigService.loadConfig().subscribe({
+        next: (config) => {
+          this.apkVersion.set(config.apk.version);
+          this.apkDownloadUrl.set(config.apk.url);
+          this.apkFileName.set(config.apk.downloadName);
+        },
+        error: (err) => {
+          console.error('Error cargando config:', err);
+        }
+      });
+    }
   }
 
   async onSubmitContact(event: Event) {
