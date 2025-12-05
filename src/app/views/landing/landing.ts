@@ -5,7 +5,7 @@ import { AppLogo } from "../../components/app-logo";
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Footer } from "src/app/components/footer";
-import { APP_CONFIG } from '../../core/config/app.config';
+import { AppConfigService } from '../../core/services/app-config.service';
 
 @Component({
   selector: 'app-landing',
@@ -21,17 +21,18 @@ import { APP_CONFIG } from '../../core/config/app.config';
 export class LandingComponent implements OnInit, AfterViewInit {
   private platformId = inject(PLATFORM_ID);
   private http = inject(HttpClient);
+  private appConfigService = inject(AppConfigService);
   open = false;
   
   // Configuración de la APK
-  readonly apkConfig = APP_CONFIG.apk;
+  apkVersion = 'v0.1'; // valor inicial mientras carga
   
   get apkDownloadUrl(): string {
-    return `${this.apkConfig.baseUrl}${this.apkConfig.version}${this.apkConfig.extension}`;
+    return this.appConfigService.getApkDownloadUrl();
   }
   
   get apkFileName(): string {
-    return `AlertaPersona_${this.apkConfig.version}${this.apkConfig.extension}`;
+    return this.appConfigService.getApkFileName();
   }
   
   // Modelo del formulario
@@ -46,7 +47,14 @@ export class LandingComponent implements OnInit, AfterViewInit {
   submitMessage = '';
   submitSuccess = false;
 
-  ngOnInit() {}
+  ngOnInit() {
+    // Cargar configuración de versión
+    this.appConfigService.loadConfig().subscribe({
+      next: (config) => {
+        this.apkVersion = config.apk.version;
+      }
+    });
+  }
 
   async onSubmitContact(event: Event) {
     event.preventDefault();
