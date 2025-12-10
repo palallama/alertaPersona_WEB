@@ -1,11 +1,16 @@
 import { Routes } from '@angular/router';
 import { LandingComponent } from './views/landing/landing';
+import { DownloadApkComponent } from './views/download-apk/download-apk';
 
 export const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
         component: LandingComponent
+    },
+    {
+        path: 'download-apk',
+        component: DownloadApkComponent
     },
     {
         path: 'admin',
